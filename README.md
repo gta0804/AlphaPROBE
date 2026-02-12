@@ -5,7 +5,7 @@
   <h1>AlphaPROBE: Alpha Mining Via Principled Retrieval and On-graph Biased Evolution</h1>
 
   <div>
-        <a href="https://https://scholar.google.com/citations?user=jk4YCOgAAAAJ&hl=zh-CN//" target="_blank">Taian Guo</a><sup>1,2</sup>,
+        <a href="https://scholar.google.com/citations?user=jk4YCOgAAAAJ&hl=zh-CN//" target="_blank">Taian Guo</a><sup>1,2</sup>,
         <a href="https://eachsheep.space/" target="_blank">Haiyang Shen</a><sup>*1</sup>,
         <a href="https://scholar.google.com/citations?user=ZNE_22wAAAAJ&hl=en" target="_blank">Junyu Luo</a><sup>1</sup>,
         <a href="https://scholar.google.com/citations?hl=zh-CN&user=YJMJT0gAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Binqi Chen</a><sup>1, 2</sup>,
@@ -32,7 +32,7 @@
 
   </div>
 
-  This repository contains the official implementation of ***\*AlphaPROBE\**** (**Alpha** Mining Via **P**rincipled **R**etrieval and **O**n-graph **B**iased **E**volution),  a framework that reframes alpha mining as the strategic navigation of a DAG.
+  This repository contains the official implementation of **AlphaPROBE** (**Alpha** Mining Via **P**rincipled **R**etrieval and **O**n-graph **B**iased **E**volution),  a framework that reframes alpha mining as the strategic navigation of a DAG.
 
   ## 🎯 Overview
 
