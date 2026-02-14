@@ -624,24 +624,6 @@ class AlphaKnowledgeTrainer:
 
     def _log_status(self, iteration: int, args: Any):
         self.logger.log(self.pool, self.graph, iteration)
-
-    def _export_graph(self) -> None:
-        os.makedirs(self.logger.log_dir, exist_ok=True)
-        export_path = os.path.join(self.logger.log_dir, "expression_knowledge_graph.jsonl")
-        target_test = self.pool._normalize_by_day(self.target.evaluate(self.test_data))
-        with open(export_path, "w", encoding="utf-8") as f:
-            for node in self.graph.iter_nodes():
-                try:
-                    value_test = self.pool._normalize_by_day(node.payload.expression.evaluate(self.test_data))
-                    pearson_corrs = batch_pearsonr(value_test, target_test)
-                    ic_test = pearson_corrs.mean().item()
-                    icir_test = ic_test / (pearson_corrs.std().item() + 1e-6)
-                    node.test_ic = float(np.abs(ic_test))
-                    node.test_icir = float(np.abs(icir_test))
-                except Exception as exc:
-                    print(f"Failed to evaluate node {node.payload.source} on test data: {exc}")
-                json.dump(node.as_dict(), f)
-                f.write("\n")
     
     def train(self, args: Any):
         iter_times = args.search_time
@@ -650,4 +632,3 @@ class AlphaKnowledgeTrainer:
             self._train_one_iteration(step=it + 1, args=args)
             if (it + 1) % args.log_freq == 0 or it == iter_times - 1:
                 self._log_status(it + 1, args)   
-        self._export_graph()
