@@ -91,3 +91,18 @@ Please feel free to contact the authors below if you have more questions:
 \- Taian Guo, taianguo@stu.pku.edu.cn
 
 \- Haiyang Shen, hyshen@stu.pku.edu.cn
+
+## 🌟 Citation
+
+If you find our work useful, please kindly consider citing our work as follows:
+```bibtex
+@misc{guo2026alphaprobealphaminingprincipled,
+      title={AlphaPROBE: Alpha Mining via Principled Retrieval and On-graph biased evolution}, 
+      author={Taian Guo and Haiyang Shen and Junyu Luo and Binqi Chen and Hongjun Ding and Jinsheng Huang and Luchen Liu and Yun Ma and Ming Zhang},
+      year={2026},
+      eprint={2602.11917},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2602.11917}, 
+}
+```
