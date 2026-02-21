@@ -176,7 +176,6 @@ cython_debug/
 .pypirc
 
 # Data
-data/
 __pycache__
 .idea/
 .vscode/
