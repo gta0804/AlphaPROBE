@@ -219,4 +219,3 @@ eval.sh
 run.sh
 run_grid_search.sh
 grid_search_config.py
-data/
