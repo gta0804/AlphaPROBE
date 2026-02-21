@@ -215,7 +215,6 @@ ppo2/
 combine_AFF_GRF.py
 combine_GRF.ipynb
 test.ipynb
-!src/alphagen/data/
 eval.sh
 run.sh
 run_grid_search.sh
