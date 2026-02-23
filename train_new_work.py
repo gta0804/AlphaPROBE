@@ -1,5 +1,4 @@
 from alpha_knowledge.alpha_pool import AlphaKnowledgePool
-from alphagen.data.expression_bst import ExpressionBST
 from openai import OpenAI
 from utils.llm import OpenAIModel
 from tqdm import tqdm
@@ -9,6 +8,11 @@ from alphagen_qlib.stock_data import StockData
 from alphagen.data.tree import ExpressionParser
 import argparse
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 
@@ -48,10 +52,11 @@ INITIAL_EXPR = [
 
 def train(args):
     os.environ["CUDA_VISIBLE_DEVICES"] = str(args.cuda)
+    # Read QLIB_PATH from environment variables
     if args.instruments == 'sp500':
-        QLIB_PATH = 'PATH/TO/data/qlib_data/us_data_qlib'
-    else:    
-        QLIB_PATH = 'PATH/TO/.qlib/qlib_data/cn_data'
+        QLIB_PATH = os.getenv('QLIB_PATH_SP500', 'PATH/TO/data/qlib_data/us_data_qlib')
+    else:
+        QLIB_PATH = os.getenv('QLIB_PATH_CN', 'PATH/TO/.qlib/qlib_data/cn_data')
     # Initialize StockData and target expression
     data = StockData(instrument=args.instruments, start_time='2014-01-01', end_time='2020-12-31', qlib_path=QLIB_PATH)
     data_test = StockData(instrument=args.instruments, start_time='2022-07-01', end_time='2025-06-30', qlib_path=QLIB_PATH)
@@ -88,7 +93,7 @@ if __name__ == '__main__':
     parser.add_argument('--generate_num', type=int, default=5)
     parser.add_argument('--top_k', type=int, default= 15)
     parser.add_argument("--depth_decay", type=float, default=0.05)
-    parser.add_argument("--embedding_model_name", type=str, default="xxx")
+    parser.add_argument("--embedding_model_name", type=str, default=os.getenv("EMBEDDING_MODEL_NAME", "xxx"))
     parser.add_argument("--use_res_correlation", type=bool, default=True)
     parser.add_argument("--use_semantic_similarity", type=bool, default=True)
     parser.add_argument("--use_edit_distance", type=bool, default=False)

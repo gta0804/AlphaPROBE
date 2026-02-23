@@ -17,7 +17,6 @@ from utils.llm import OpenAIModel
 from utils.prompt import *
 from tqdm import tqdm
 from alphagen.data.dimension import DimensionCalculator, _is_close
-from alphagen.data.expression_bst import InvalidExpressionInput
 
 import re
 
@@ -501,8 +500,11 @@ class AlphaKnowledgeTrainer:
 
         os.makedirs(log_dir, exist_ok=True)
         self.logger = AlphaKnowledgeLogger(test_data, target, log_dir, args)
-        ## TODO: set your api key and base url
-        self.client = OpenAI(api_key="api_key", base_url="base_url")
+        ## TODO: set your api key and base url in environment variables
+        self.client = OpenAI(
+            api_key=os.getenv("OPENAI_API_KEY", ""),
+            base_url=os.getenv("OPENAI_BASE_URL", "")
+        )
         self.model = OpenAIModel(model_name,"", 400000)
     
 
